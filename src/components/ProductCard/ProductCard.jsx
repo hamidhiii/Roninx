@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "./ProductCard.scss";
 import { FaStar } from "react-icons/fa";
-import Accordion from "react-bootstrap/Accordion";
+
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { productData } from "../../Constants/Index";
+import ProductAccardion from "../ProductAccardion/ProductAccardion";
 
 export default function ProductCard() {
   const {
@@ -64,35 +65,13 @@ export default function ProductCard() {
 
         <div className="action-buttons">
           <button className="bulk-order">Bulk Order</button>
-          <button className="compare" disabled>Compare</button>
         </div>
 
-        <div className="features">
-          <h5>Features</h5>
-          <ul>
-            {features.map((feature, i) => (
-              <li key={i}>{feature}</li>
-            ))}
-          </ul>
-        </div>
 
-        <Accordion activeKey={activeAccordion}>
-          <Accordion.Item eventKey="0">
-            <Accordion.Header onClick={() => toggleAccordion("0")}>
-              Description{" "}
-              {activeAccordion === "0" ? <FaMinus /> : <FaPlus />}
-            </Accordion.Header>
-            <Accordion.Body>{description}</Accordion.Body>
-          </Accordion.Item>
 
-          <Accordion.Item eventKey="1">
-            <Accordion.Header onClick={() => toggleAccordion("1")}>
-              Specification{" "}
-              {activeAccordion === "1" ? <FaMinus /> : <FaPlus />}
-            </Accordion.Header>
-            <Accordion.Body>{specification}</Accordion.Body>
-          </Accordion.Item>
-        </Accordion>
+        <ProductAccardion features={features} description={description} specification={specification} activeAccordion={activeAccordion} toggleAccordion={toggleAccordion}
+        />
+
       </div>
     </div>
   );
